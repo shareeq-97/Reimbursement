@@ -1,0 +1,40 @@
+<h1>Bill Details</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Field</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th scope="row">Type</th>
+      <td><%= @bill.bill_type %></td>
+    </tr>
+    <tr>
+      <th scope="row">Amount</th>
+      <td><%= @bill.amount %></td>
+    </tr>
+    <tr>
+      <th scope="row">Date of Submission</th>
+      <td><%= @bill.created_at.strftime('%d-%m-%Y') %></td>
+    </tr>
+    <tr>
+      <th scope="row">Submitted By</th>
+      <td><%= @bill.employee.full_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Department</th>
+      <td><%= @bill.employee.department.name %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<%= link_to "Edit", edit_bill_path(@bill) %>
+<br>
+<%= link_to "Destroy", bill_path(@bill), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<br>
+<%= link_to 'Back', bills_path %>

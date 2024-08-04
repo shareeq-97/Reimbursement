@@ -1,0 +1,40 @@
+<h1>Employee Details</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Field</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">First Name</th>
+      <td><%= @employee.first_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Last Name</th>
+      <td><%= @employee.last_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td><%= @employee.email %></td>
+    </tr>
+    <tr>
+      <th scope="row">Designation</th>
+      <td><%= @employee.designation %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Department</th>
+      <td><%= @employee.department.name %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<%= link_to "Edit", edit_employee_path(@employee) %>
+<br>
+<%= link_to "Destroy", employee_path(@employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<br>
+<%= link_to 'Back', employees_path %>

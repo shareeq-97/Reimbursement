@@ -1,0 +1,42 @@
+<%= form_with model: @bill do |form| %>
+  <% if @bill.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">Errors</h4>
+      <ul>
+        <% @bill.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :bill_type, class: 'form-label' %>
+        <%= form.select :bill_type, options_for_select(Bill::BILL_TYPES, bill.bill_type), { prompt: 'Choose...' }, { class: 'form-control', required: true } %>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <%= form.label :amount, class: 'form-label' %>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">INR</span>
+          </div>
+          <%= form.number_field :amount, class: 'form-control', required: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :employee_id, class: 'form-label' %>
+        <%= form.collection_select :employee_id, Employee.all, :id, :full_name, { prompt: 'Choose...' }, { class: 'form-control', required: true } %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

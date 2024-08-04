@@ -1,0 +1,32 @@
+<h1>Departments</h1>
+
+<% if @departments.present? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @departments.each do |department| %>
+        <tr>
+          <td><%= department.name %></td>
+          <td>
+            <%= link_to "Show", department %>&nbsp;
+            <%= link_to "Edit", edit_department_path(department) %>&nbsp;
+            <%= link_to "Destroy", department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div>No departments present. Add one</div>
+<% end %>
+
+<%= link_to 'New Department', new_department_path %>
+<br>
+
+<%= link_to 'Back To Home', home_index_path %>

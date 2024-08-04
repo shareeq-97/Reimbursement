@@ -1,0 +1,41 @@
+<h1>Employees</h1>
+
+<% if @employees.present? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Department</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.first_name %></td>
+          <td><%= employee.last_name %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.designation %></td>
+          <td><%= employee.department.name %></td>
+          <td>
+            <%= link_to "Show", employee %>&nbsp;
+            <%= link_to "Edit", edit_employee_path(employee) %>&nbsp;
+            <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div>No employees present. Add one</div>
+<% end %>
+
+
+<%= link_to 'New Employee', new_employee_path %>
+<br>
+
+<%= link_to 'Back To Home', home_index_path %>
